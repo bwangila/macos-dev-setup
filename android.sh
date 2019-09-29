@@ -16,13 +16,21 @@ if test ! $(which brew); then
 fi
 
 # Make sure we’re using the latest Homebrew.
+echo "Updating homebrew..."
 brew update
 
+echo "Installing java..."
 brew cask install --appdir="~/Applications" java
+
+echo "Installing Intellij Idea COmmunity Edition..."
 brew cask install --appdir="~/Applications" intellij-idea-ce
+
+echo "Installing Android Studio..."
 brew cask install --appdir="~/Applications" android-studio
 
+echo "Installing Android SDK..."
 brew install android-sdk
 
 # Remove outdated versions from the cellar.
+echo "Removing outdated version from homebrew..."
 brew cleanup
