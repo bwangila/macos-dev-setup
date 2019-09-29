@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Install command-line tools using Homebrew.
 
 # Ask for the administrator password upfront.
@@ -16,16 +15,20 @@ if test ! $(which brew); then
 fi
 
 # Make sure we’re using the latest Homebrew.
+echo "Updating homebrew..."
 brew update
 
+echo "Installing Node..."
 brew install node
 
 # Remove outdated versions from the cellar.
+echo "Removing outdated versions from homebrew..."
 brew cleanup
 
-npm install -g coffee-script
+echo "Installing web development utilities..."
+brew cask install --appdir="/Applications" gulp
+brew cask install --appdir="/Applications" imageoptim
+brew cask install --appdir="/Applications" ngrok
+brew cask install --appdir="/Applications" postman
 npm install -g grunt-cli
 npm install -g jshint
-npm install -g less
-
-#gem install jekyll
