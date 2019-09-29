@@ -9,10 +9,10 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 done;
 unset file;
 
-# Case-insensitive globbing (used in pathname expansion)
+# Case-insensitive globbing (used in path name expansion)
 shopt -s nocaseglob;
 
-# Append to the Bash history file, rather than overwriting it
+# Append to Bash history file, rather than overwriting it
 shopt -s histappend;
 
 # Autocorrect typos in path names when using `cd`

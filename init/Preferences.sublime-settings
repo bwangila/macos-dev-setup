@@ -9,7 +9,6 @@
     [
         ".DS_Store",
         "Desktop.ini",
-        "*.pyc",
         "._*",
         "Thumbs.db",
         ".Spotlight-V100",

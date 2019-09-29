@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Install command-line tools using Homebrew.
-
 # Ask for the administrator password upfront.
+
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
@@ -18,7 +18,7 @@ fi
 # Make sure we’re using the latest Homebrew.
 brew update
 
-# Install data stores
+# Install all data stores
 brew install mysql
 brew install postgresql
 brew install mongo

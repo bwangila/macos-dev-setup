@@ -4,7 +4,6 @@
 #
 #   Provides the content encoding the specified
 #   resources are served with.
-#
 # USAGE:
 #
 #   httpcompression URL ...
