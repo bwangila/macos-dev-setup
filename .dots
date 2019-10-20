@@ -12,20 +12,23 @@ function runDots() {
     do
         if [ $ARG == "bootstrap" ] || [ $ARG == "all" ]; then
             echo ""
-            echo "------------------------------"
-            echo "Syncing the dev-setup repo to your local machine."
-            echo "------------------------------"
+            echo "#====================================================================================#"
+            echo "# STEP 01:                                                                           #"
+            echo "# Syncing the setup repo to your local machine.                                      #"
+            echo "#====================================================================================#"
             echo ""
             cd ~ && curl -#L https://github.com/bwangila/macos-dev-setup/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,LICENSE}
         fi
         if [ $ARG == "osxprep" ] || [ $ARG == "all" ]; then
             # Run the osxprep.sh Script
             echo ""
-            echo "------------------------------"
-            echo "Updating OSX and installing Xcode command line tools"
-            echo "------------------------------"
+            echo "#====================================================================================#"
+            echo "# STEP 02:                                                                           #"
+            echo "# Updating OSX and installing Xcode command line tools                               #"
+            echo "#====================================================================================#"
             echo ""
             ./osxprep.sh
+
         fi
         if [ $ARG == "brew" ] || [ $ARG == "all" ]; then
             # Run the brew.sh Script
@@ -33,10 +36,10 @@ function runDots() {
             # the commented brew.sh source file directly and tweak it to
             # suit your needs.
             echo ""
-            echo "------------------------------"
-            echo "Installing Homebrew along with some common formulae and apps."
-            echo "This might awhile to complete, as some formulae need to be installed from source."
-            echo "------------------------------"
+            echo "#====================================================================================#"
+            echo "# Installing Homebrew along with some common formulae and apps.                      #"
+            echo "# This might awhile to complete, as some formulae need to be installed from source.  #"
+            echo "#====================================================================================#"
             echo ""
             ./brew.sh
         fi
@@ -49,9 +52,9 @@ function runDots() {
             # might want to change some of the settings listed in the
             # SSD section.
             echo ""
-            echo "------------------------------"
-            echo "Setting sensible OSX defaults."
-            echo "------------------------------"
+            echo "#====================================================================================#"
+            echo "# Setting sensible OSX defaults.                                                     #"
+            echo "#====================================================================================#"
             echo ""
             ./osx.sh
         fi
@@ -73,33 +76,36 @@ function runDots() {
         # fi
         if [ $ARG == "datastores" ] || [ $ARG == "all" ]; then
             # Run the datastores.sh Script
-            echo "------------------------------"
-            echo "Setting up data stores."
-            echo "------------------------------"
+            echo "#====================================================================================#"
+            echo "# Setting up data stores.                                                            #"
+            echo "#====================================================================================#"
             echo ""
             ./datastores.sh
         fi
         if [ $ARG == "web" ] || [ $ARG == "all" ]; then
             # Run the web.sh Script
-            echo "------------------------------"
-            echo "Setting up JavaScript web development environment."
-            echo "------------------------------"
+            echo "#====================================================================================#"
+            echo "# Setting up JavaScript web development environment.                                 #"
+            echo "#====================================================================================#"
             echo ""
             ./web.sh
         fi
         if [ $ARG == "android" ] || [ $ARG == "all" ]; then
             # Run the android.sh Script
-            echo "------------------------------"
-            echo "Setting up Android development environment."
-            echo "------------------------------"
+            echo "#====================================================================================#"
+            echo "# Setting up Android development environment.                                        #"
+            echo "#====================================================================================#"
             echo ""
             ./android.sh
         fi
     done
 
-    echo "------------------------------"
-    echo "Completed running .dots, restart your computer to ensure all updates take effect"
-    echo "------------------------------"
+    echo ""
+    echo "#====================================================================================#"
+    echo "# SETUP COMPLETE                                                                     #"
+    echo "# Please restart your computer to ensure all updates take effect.                    #"
+    echo "#====================================================================================#"
+    echo ""
 }
 
 read -p "This script may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
