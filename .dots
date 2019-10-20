@@ -10,41 +10,47 @@ function runDots() {
     # Run sections based on command line arguments
     for ARG in "$@"
     do
+
+        # Run the bootstrap.sh Script
+        # *********************************
         if [ $ARG == "bootstrap" ] || [ $ARG == "all" ]; then
             echo ""
             echo "#====================================================================================#"
-            echo "# STEP 01:                                                                           #"
+            echo "# STEP 01: DOWNLOADING FILES..                                                       #"
             echo "# Syncing the setup repo to your local machine.                                      #"
             echo "#====================================================================================#"
             echo ""
-            cd ~ && curl -#L https://github.com/bwangila/macos-dev-setup/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,LICENSE}
+#            cd ~ && curl -#L https://github.com/bwangila/macos-dev-setup/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,LICENSE}
         fi
+
+        # Run the osxprep.sh Script
+        # *********************************
         if [ $ARG == "osxprep" ] || [ $ARG == "all" ]; then
-            # Run the osxprep.sh Script
             echo ""
             echo "#====================================================================================#"
-            echo "# STEP 02:                                                                           #"
+            echo "# STEP 02: PREPARING OSX..                                                           #"
             echo "# Updating OSX and installing Xcode command line tools                               #"
             echo "#====================================================================================#"
             echo ""
             ./osxprep.sh
-
         fi
+
+        # Run the brew.sh Script
+        # *********************************
         if [ $ARG == "brew" ] || [ $ARG == "all" ]; then
-            # Run the brew.sh Script
-            # For a full listing of installed formulae and apps, refer to
-            # the commented brew.sh source file directly and tweak it to
-            # suit your needs.
             echo ""
             echo "#====================================================================================#"
+            echo "# STEP 03: HOMEBREW & MAC APPS..                                                     #"
             echo "# Installing Homebrew along with some common formulae and apps.                      #"
-            echo "# This might awhile to complete, as some formulae need to be installed from source.  #"
+            echo "# Grab a cup of coffee, this might take a while..                                    #"
             echo "#====================================================================================#"
             echo ""
             ./brew.sh
         fi
+
+        # Run the osx.sh Script
+        # *********************************
         if [ $ARG == "osx" ] || [ $ARG == "all" ]; then
-            # Run the osx.sh Script
             # I strongly suggest you read through the commented osx.sh
             # source file and tweak any settings based on your personal
             # preferences. The script defaults are intended for you to
