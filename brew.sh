@@ -20,15 +20,9 @@ fi
 
 # Make sure we’re using the latest Homebrew.
 # *********************************
-echo "–– Updating homebrew.."
-brew update
+echo "–– Updating homebrew & homebrew formulae.."
+brew update && brew upgrade
 
-# Upgrade any already-installed formulae.
-# *********************************
-echo "–– Upgrading homebrew formulae.."
-brew upgrade --all
-
-# TODO: Add descriptions to everything we are installing
 
 
 # Install GNU core utilities (those that come with OS X are outdated).
