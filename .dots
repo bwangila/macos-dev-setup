@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
 
 function runDots() {
+
+        # Let's add some fancy colors to the terminal output
+        # *********************************
+        bold_green="\e[1m\e[32m"
+        bold_magenta="\e[1m\e[35m"
+        normal="\e[0m"
+
+
     # Ask for the administrator password upfront
-    sudo -v
+#    sudo -v
 
     # Keep-alive: update existing `sudo` time stamp until the script has finished
-    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+#    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
     # Run sections based on command line arguments
     for ARG in "$@"
@@ -19,32 +27,33 @@ function runDots() {
             echo "# STEP 01: DOWNLOADING FILES..                                                       #"
             echo "# Syncing the setup repo to your local machine.                                      #"
             echo "#====================================================================================#"
-            echo ""
+            echo -e "${normal}"
 #            cd ~ && curl -#L https://github.com/bwangila/macos-dev-setup/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,LICENSE}
         fi
 
         # Run the osxprep.sh Script
         # *********************************
         if [ $ARG == "osxprep" ] || [ $ARG == "all" ]; then
-            echo ""
+            echo -e "${bold_magenta}"
             echo "#====================================================================================#"
             echo "# STEP 02: PREPARING OSX..                                                           #"
             echo "# Updating OSX and installing Xcode command line tools                               #"
             echo "#====================================================================================#"
-            echo ""
+            echo -e "${normal}"
             ./osxprep.sh
         fi
 
         # Run the brew.sh Script
         # *********************************
         if [ $ARG == "brew" ] || [ $ARG == "all" ]; then
-            echo ""
+            echo -e "${bold_magenta}"
             echo "#====================================================================================#"
             echo "# STEP 03: HOMEBREW & MAC APPS..                                                     #"
+            echo "#                                                                                    #"
             echo "# Installing Homebrew along with some common formulae and apps.                      #"
             echo "# Grab a cup of coffee, this might take a while..                                    #"
             echo "#====================================================================================#"
-            echo ""
+            echo -e "${normal}"
             ./brew.sh
         fi
 
@@ -57,11 +66,11 @@ function runDots() {
             # customize. For example, if you are not running an SSD you
             # might want to change some of the settings listed in the
             # SSD section.
-            echo ""
+            echo -e "${bold_magenta}"
             echo "#====================================================================================#"
             echo "# Setting sensible OSX defaults.                                                     #"
             echo "#====================================================================================#"
-            echo ""
+            echo -e "${normal}"
             ./osx.sh
         fi
         # if [ $ARG == "pydata" ] || [ $ARG == "all" ]; then
@@ -82,40 +91,48 @@ function runDots() {
         # fi
         if [ $ARG == "datastores" ] || [ $ARG == "all" ]; then
             # Run the datastores.sh Script
+            echo -e "${bold_magenta}"
             echo "#====================================================================================#"
             echo "# Setting up data stores.                                                            #"
             echo "#====================================================================================#"
-            echo ""
+            echo -e "${normal}"
             ./datastores.sh
         fi
         if [ $ARG == "web" ] || [ $ARG == "all" ]; then
             # Run the web.sh Script
+            echo -e "${bold_magenta}"
             echo "#====================================================================================#"
             echo "# Setting up JavaScript web development environment.                                 #"
             echo "#====================================================================================#"
-            echo ""
+            echo -e "${normal}"
             ./web.sh
         fi
         if [ $ARG == "android" ] || [ $ARG == "all" ]; then
             # Run the android.sh Script
+            echo -e "${bold_magenta}"
             echo "#====================================================================================#"
             echo "# Setting up Android development environment.                                        #"
             echo "#====================================================================================#"
-            echo ""
+            echo -e "${normal}"
             ./android.sh
         fi
     done
 
-    echo ""
+    echo -e "${bold_magenta}"
     echo "#====================================================================================#"
     echo "# SETUP COMPLETE                                                                     #"
     echo "# Please restart your computer to ensure all updates take effect.                    #"
     echo "#====================================================================================#"
-    echo ""
+    echo -e "${normal}"
 }
 
-read -p "This script may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-echo "";
+# Confirm overwriting existing files
+# *********************************
+tput setaf 1 #set text color to red
+  echo ""
+  read -p "This script may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+  echo ""
+tput sgr0 # reset all text properties
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     runDots $@
 fi;

@@ -7,20 +7,28 @@
 
 # Ask for the administrator password upfront.
 # *********************************
-sudo -v
+#sudo -v
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+#while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# Let's add some fancy colors to the terminal output
+# *********************************
+bold_green="\e[1m\e[32m"
+bold_yellow="\e[1m\e[34m"
+normal="\e[0m"
 
 # Check for Homebrew, and install if we don't have it
 # *********************************
-echo "–– Checking for/installing homebrew.."
+echo -e "${bold_green}==> Checking for/installing homebrew..${normal}"
+#echo ""
 if test ! $(which brew); then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # Make sure we’re using the latest Homebrew.
 # *********************************
-echo "–– Updating homebrew & homebrew formulae.."
+echo -e "${bold_green}==> Updating homebrew & homebrew formulae..${normal}"
+#echo "==> Updating homebrew & homebrew formulae.."
 brew update && brew upgrade
 
 
@@ -28,7 +36,7 @@ brew update && brew upgrade
 # Install GNU core utilities (those that come with OS X are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 # *********************************
-echo "–– Installing GNU Core utilities.."
+echo -e "${bold_green}==> Installing GNU Core utilities..${normal}"
 brew install coreutils
 sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 # Install some other useful utilities like `sponge`.
@@ -39,42 +47,48 @@ brew install moreutils
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 # *********************************
-brew install gnu-sed --with-default-names
+brew install gnu-sed
 
 
-# Install Bash 4.
+
+# Install Bash.
 # *********************************
-echo "–– Installing Bash 4.."
+echo -e "${bold_green}==> Installing Bash..${normal}"
 brew install bash
-brew tap homebrew/versions
 brew install bash-completion2
 # We installed the new shell, now we have to activate it
 # *********************************
-echo "–– Adding the newly installed shell to the list of allowed shells--"
+echo -e "${bold_green}==> Adding the newly installed shell to the list of allowed shells..${normal}"
 # Prompts for password & change to the new shell
 # *********************************
 sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 chsh -s /usr/local/bin/bash
 
-# Install `wget` with IRI support.
-echo "Installing wget..."
-brew install wget --with-iri
 
 # Install Python
-echo "Installing Python..."
+# *********************************
+echo -e "${bold_green}==> Installing Python..${normal}"
 brew install python
 brew install python3
 
 # Install more recent versions of some OS X tools.
-echo "Updating OSX Tools..."
-brew install vim --override-system-vi
-brew install homebrew/dupes/grep
-brew install homebrew/dupes/openssh
-brew install homebrew/dupes/screen
-brew install homebrew/php/php55 --with-gmp
+# *********************************
+echo -e "${bold_green}==> Installing wget, vim, grep and screen..${normal}"
+brew install wget
+brew install vim --with-override-system-vi
+brew install grep --with-default-names
+brew install screen
+
+# Install openssh
+# *********************************
+echo -e "${bold_green}==> Installing openssl and openssh..${normal}"
+brew install openssl
+brew install openssh --with-brewed-openssl --with-keychain-support
+
 
 # Install font tools.
-echo "Installing Font Tools..."
+# *********************************
+echo -e "${bold_green}==> Installing font tools..${normal}"
 brew tap bramstein/webfonttools
 brew tap caskroom/fonts
 brew install sfnt2woff
@@ -82,7 +96,8 @@ brew install sfnt2woff-zopfli
 brew install woff2
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
-echo "Installing CTF Tools..."
+# *********************************
+echo -e "${bold_green}==> Installing CTF Tools..${normal}"
 brew install aircrack-ng
 brew install bfg
 brew install binutils
@@ -109,7 +124,8 @@ brew install homebrew/x11/xpdf
 brew install xz
 
 # Install other useful binaries.
-echo "Installing Other Useful Binaries..."
+# *********************************
+echo -e "${bold_green}==> Installing other useful binaries..${normal}"
 brew install ack
 brew install dark-mode
 #brew install exiv2
@@ -135,13 +151,14 @@ brew install pkg-config libffi
 brew install pandoc
 
 # Core casks
-echo "Installing Core Casks..."
+echo -e "${bold_green}==> Installing Core Casks..${normal}"
 brew cask install --appdir="~/Applications" java
 brew cask install --appdir="~/Applications" xquartz
 
 # Development tool casks
 # Terminal, IDEs & Editors
-echo "Installing Terminal, IDEs and Text Editors..."
+# *********************************
+echo -e "${bold_green}==> Installing Terminal, IDEs and Text Editors..${normal}"
 brew cask install --appdir="/Applications" iterm2
 brew cask install --appdir="/Applications" jetbrains-toolbox
 brew cask install --appdir="/Applications" phpstorm
@@ -151,6 +168,8 @@ brew cask install --appdir="/Applications" atom
 brew cask install --appdir="/Applications" macdown
 
 #Virtualization
+# *********************************
+echo -e "${bold_green}==> Installing Docker..${normal}"
 echo "Installing Docker..."
 brew install docker
 brew install boot2docker
