@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
- #====================================================================================#
- # STEP 03: HOMEBREW & MAC APPS..                                                     #
- # Installing Homebrew along with some common formulae and apps.                      #
- #====================================================================================#
+#====================================================================================#
+# STEP 03: HOMEBREW & MAC APPS..                                                     #
+# Installing Homebrew along with some common formulae and apps.                      #
+#====================================================================================#
 
 # Ask for the administrator password upfront.
 # *********************************
@@ -19,16 +19,16 @@ normal="\e[0m"
 
 # Check for Homebrew, and install if we don't have it
 # *********************************
-echo -e "${bold_green}==> Checking for/installing homebrew..${normal}"
-#echo ""
+echo ""
+echo -e "${bold_green}==> Checking for/installing Homebrew..${normal}"
 if test ! $(which brew); then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # Make sure we’re using the latest Homebrew.
 # *********************************
-echo -e "${bold_green}==> Updating homebrew & homebrew formulae..${normal}"
-#echo "==> Updating homebrew & homebrew formulae.."
+echo ""
+echo -e "${bold_green}==> Updating Homebrew & Homebrew Formulae..${normal}"
 brew update && brew upgrade
 
 
@@ -36,107 +36,95 @@ brew update && brew upgrade
 # Install GNU core utilities (those that come with OS X are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 # *********************************
-echo -e "${bold_green}==> Installing GNU Core utilities..${normal}"
+echo ""
+echo -e "${bold_green}==> Installing GNU Core Utilities..${normal}"
 brew install coreutils
 sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 # Install some other useful utilities like `sponge`.
-# *********************************
 brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-# *********************************
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
-# *********************************
 brew install gnu-sed
-
 
 
 # Install Bash.
 # *********************************
-echo -e "${bold_green}==> Installing Bash..${normal}"
+echo ""
+echo -e "${bold_green}==> Installing and configuring Bash..${normal}"
 brew install bash
 brew install bash-completion2
-# We installed the new shell, now we have to activate it
-# *********************************
-echo -e "${bold_green}==> Adding the newly installed shell to the list of allowed shells..${normal}"
-# Prompts for password & change to the new shell
-# *********************************
+# Let's activate Bash, the new shell..
 sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 chsh -s /usr/local/bin/bash
 
 
-# Install Python
-# *********************************
-echo -e "${bold_green}==> Installing Python..${normal}"
-brew install python
-brew install python3
-
 # Install more recent versions of some OS X tools.
 # *********************************
+echo ""
 echo -e "${bold_green}==> Installing wget, vim, grep and screen..${normal}"
 brew install wget
-brew install vim --with-override-system-vi
-brew install grep --with-default-names
+brew install vim
+brew install grep
 brew install screen
+
 
 # Install openssh
 # *********************************
-echo -e "${bold_green}==> Installing openssl and openssh..${normal}"
+echo ""
+echo -e "${bold_green}==> Installing Openssl and Openssh..${normal}"
 brew install openssl
 brew install openssh --with-brewed-openssl --with-keychain-support
 
 
+# Install Python
+# *********************************
+echo ""
+echo -e "${bold_green}==> Installing Python..${normal}"
+brew install python
+brew install python3
+
+
+# Install Java
+# *********************************
+echo ""
+echo -e "${bold_green}==> Installing Java..${normal}"
+brew cask install --appdir="~/Applications" java
+brew cask install --appdir="~/Applications" xquartz
+
+
+# Install Git
+# *********************************
+echo ""
+echo -e "${bold_green}==> Installing Git..${normal}"
+brew install git
+brew install git-lfs
+brew install git-flow
+brew install git-extras
+
+
 # Install font tools.
 # *********************************
-echo -e "${bold_green}==> Installing font tools..${normal}"
+echo ""
+echo -e "${bold_green}==> Installing Font Tools..${normal}"
 brew tap bramstein/webfonttools
 brew tap caskroom/fonts
 brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
 
-# Install some CTF tools; see https://github.com/ctfs/write-ups.
-# *********************************
-echo -e "${bold_green}==> Installing CTF Tools..${normal}"
-brew install aircrack-ng
-brew install bfg
-brew install binutils
-brew install binwalk
-brew install cifer
-brew install dex2jar
-brew install dns2tcp
-brew install fcrackzip
-brew install foremost
-brew install hashpump
-brew install hydra
-brew install john
-brew install knock
-brew install netpbm
-brew install nmap
-brew install pngcheck
-brew install socat
-brew install sqlmap
-brew install tcpflow
-brew install tcpreplay
-brew install tcptrace
-brew install ucspi-tcp # `tcpserver` etc.
-brew install homebrew/x11/xpdf
-brew install xz
 
 # Install other useful binaries.
 # *********************************
+echo ""
 echo -e "${bold_green}==> Installing other useful binaries..${normal}"
 brew install ack
-brew install dark-mode
-#brew install exiv2
-brew install git
-brew install git-lfs
-brew install git-flow
-brew install git-extras
+brew install dark-mode          # conrol dark mode from the command line
 brew install hub
 brew install imagemagick --with-webp
 brew install lua
 brew install lynx
+brew install nmap
 brew install p7zip
 brew install pigz
 brew install pv
@@ -150,22 +138,6 @@ brew install zopfli
 brew install pkg-config libffi
 brew install pandoc
 
-# Core casks
-echo -e "${bold_green}==> Installing Core Casks..${normal}"
-brew cask install --appdir="~/Applications" java
-brew cask install --appdir="~/Applications" xquartz
-
-# Development tool casks
-# Terminal, IDEs & Editors
-# *********************************
-echo -e "${bold_green}==> Installing Terminal, IDEs and Text Editors..${normal}"
-brew cask install --appdir="/Applications" iterm2
-brew cask install --appdir="/Applications" jetbrains-toolbox
-brew cask install --appdir="/Applications" phpstorm
-brew cask install --appdir="/Applications" sublime-text
-brew cask install --appdir="/Applications" visual-studio-code
-brew cask install --appdir="/Applications" atom
-brew cask install --appdir="/Applications" macdown
 
 #Virtualization
 # *********************************
@@ -174,12 +146,43 @@ echo "Installing Docker..."
 brew install docker
 brew install boot2docker
 
+
+# Install iTerm
+# *********************************
+echo ""
+echo -e "${bold_green}==> Installing iTerm2..${normal}"
+brew cask install --appdir="/Applications" iterm2
+
+
+# Install IDEs & Code Editors
+# *********************************
+echo ""
+echo -e "${bold_green}==> Installing Jetbrains Toolbox and PHPStorm..${normal}"
+brew cask install --appdir="/Applications" jetbrains-toolbox        # Manages all Jetbrains Tools
+brew cask install --appdir="/Applications" phpstorm                 # Best PHP IDE
+
+echo ""
+echo -e "${bold_green}==> Installing VS Code..${normal}"
+brew cask install --appdir="/Applications" visual-studio-code       # Best front-end code editor
+
+echo ""
+echo -e "${bold_green}==> Installing Atom..${normal}"
+brew cask install --appdir="/Applications" atom                     # Simple, extensible code editor
+
+echo ""
+echo -e "${bold_green}==> Installing Sublime Text 2..${normal}"
+brew cask install --appdir="/Applications" sublime-text             # It's Sublime Text :-)
+
+echo ""
+echo -e "${bold_green}==> Installing MacDown..${normal}"
+brew cask install --appdir="/Applications" macdown                  # Editing Markdown files easily
+
 echo "Installing more Developer Tools..."
-brew cask install --appdir="/Applications" dash
-brew cask install --appdir="/Applications" flux
-brew cask install --appdir="/Applications" drawio
-brew cask install --appdir="/Applications" github
-brew cask install --appdir="/Applications" mysqlworkbench
+brew cask install --appdir="/Applications" dash                     # Offline documentation for everything
+brew cask install --appdir="/Applications" flux                     # Blue-light blocker, protect those eyes
+brew cask install --appdir="/Applications" drawio                   # Drawing flowcharts, schemas, userflows etc
+brew cask install --appdir="/Applications" github                   # Git GUI by Github
+brew cask install --appdir="/Applications" mysqlworkbench           # GUI for MySQL databases
 
 # Browswes
 echo "Installing Browsers..."
