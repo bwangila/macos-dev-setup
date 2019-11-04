@@ -95,18 +95,35 @@ brew cask install --appdir="~/Applications" xquartz
 
 # Install Git
 # *********************************
-echo ""
-echo -e "${bold_green}==> Installing Git..${normal}"
+echo -e "${bold_yellow}"
+echo "# GIT & Git APPS"
+echo "#=======================================#"
+echo -e "${normal}"
+echo -e "${bold_green}==> Installing git..${normal}"
 brew install git
 brew install git-lfs
 brew install git-flow
 brew install git-extras
 
+echo ""
+echo -e "${bold_green}==> Installing Github –– Git GUI by Github..${normal}"
+brew cask install --appdir="/Applications" github                   # Git GUI by Github
+
+echo ""
+echo -e "${bold_green}==> Installing Git Kraken..${normal}"
+brew cask install --appdir="/Applications" gitkraken                # Git GUI
+
+
+
 
 # Install font tools.
 # *********************************
-echo ""
-echo -e "${bold_green}==> Installing Font Tools..${normal}"
+echo -e "${bold_yellow}"
+echo "# FONTS & FONT TOOLS"
+echo "#=======================================#"
+echo -e "${normal}"
+echo -e "${bold_green}==> Installing Webfont Tools..${normal}"
+brew install fontforge ttf2eot ttfautohint
 brew tap bramstein/webfonttools
 brew tap caskroom/fonts
 brew install sfnt2woff
@@ -182,10 +199,6 @@ brew cask install --appdir="/Applications" flux                     # Blue-light
 echo ""
 echo -e "${bold_green}==> Installing DrawIO –– Drawing flowcharts, schemas, userflows etc..${normal}"
 brew cask install --appdir="/Applications" drawio                   # Drawing flowcharts, schemas, userflows etc
-
-echo ""
-echo -e "${bold_green}==> Installing Github –– Git GUI by Github..${normal}"
-brew cask install --appdir="/Applications" github                   # Git GUI by Github
 
 echo ""
 echo -e "${bold_green}==> Installing MySQL Workbench –– GUI tool for MySQL Databases..${normal}"
