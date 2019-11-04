@@ -118,29 +118,20 @@ brew install woff2
 # *********************************
 echo ""
 echo -e "${bold_green}==> Installing other useful binaries..${normal}"
-brew install ack
-brew install dark-mode          # conrol dark mode from the command line
-brew install hub
-brew install imagemagick --with-webp
-brew install lua
-brew install lynx
-brew install nmap
-brew install p7zip
-brew install pigz
-brew install pv
-brew install rename
-brew install rhino
-brew install speedtest_cli
-brew install ssh-copy-id
-brew install tree
-brew install webkit2png
-brew install zopfli
-brew install pkg-config libffi
-brew install pandoc
+brew install ack                      # code search tool
+brew install dark-mode                # conrol dark mode from the command line
+brew install imagemagick --with-webp  # image manipulation tools and libraries
+brew install mackup                   # backup all your application settings to a cloud provider
+brew install nmap                     # port scan utility
+brew install pigz                     # parallel gzip for multicore processors
+brew install speedtest_cli            # command line interface for speedtest.net
+brew install tree                     # display directory trees with color output
+brew install webkit2png               # take full webpage screenshots
 
 
 #Virtualization
 # *********************************
+echo ""
 echo -e "${bold_green}==> Installing Docker..${normal}"
 echo "Installing Docker..."
 brew install docker
@@ -151,14 +142,17 @@ brew install boot2docker
 # *********************************
 echo ""
 echo -e "${bold_green}==> Installing iTerm2..${normal}"
-brew cask install --appdir="/Applications" iterm2
+brew cask install --appdir="/Applications" iterm2                   # Full-featured terminal
 
 
 # Install IDEs & Code Editors
 # *********************************
 echo ""
-echo -e "${bold_green}==> Installing Jetbrains Toolbox and PHPStorm..${normal}"
+echo -e "${bold_green}==> Installing Jetbrains Toolbox –– Jetbrains Apps Manager..${normal}"
 brew cask install --appdir="/Applications" jetbrains-toolbox        # Manages all Jetbrains Tools
+
+echo ""
+echo -e "${bold_green}==> Installing PHPStorm –– Best PHP IDE..${normal}"
 brew cask install --appdir="/Applications" phpstorm                 # Best PHP IDE
 
 echo ""
@@ -166,7 +160,7 @@ echo -e "${bold_green}==> Installing VS Code..${normal}"
 brew cask install --appdir="/Applications" visual-studio-code       # Best front-end code editor
 
 echo ""
-echo -e "${bold_green}==> Installing Atom..${normal}"
+echo -e "${bold_green}==> Installing Atom –– Extensible open source Code Editor..${normal}"
 brew cask install --appdir="/Applications" atom                     # Simple, extensible code editor
 
 echo ""
@@ -174,62 +168,142 @@ echo -e "${bold_green}==> Installing Sublime Text 2..${normal}"
 brew cask install --appdir="/Applications" sublime-text             # It's Sublime Text :-)
 
 echo ""
-echo -e "${bold_green}==> Installing MacDown..${normal}"
+echo -e "${bold_green}==> Installing MacDown –– Quick Markdown Editor..${normal}"
 brew cask install --appdir="/Applications" macdown                  # Editing Markdown files easily
 
-echo "Installing more Developer Tools..."
+echo ""
+echo -e "${bold_green}==> Installing Dash –– Offline API Documentation..${normal}"
 brew cask install --appdir="/Applications" dash                     # Offline documentation for everything
+
+echo ""
+echo -e "${bold_green}==> Installing Flux –– Blue light filter..${normal}"
 brew cask install --appdir="/Applications" flux                     # Blue-light blocker, protect those eyes
+
+echo ""
+echo -e "${bold_green}==> Installing DrawIO –– Drawing flowcharts, schemas, userflows etc..${normal}"
 brew cask install --appdir="/Applications" drawio                   # Drawing flowcharts, schemas, userflows etc
+
+echo ""
+echo -e "${bold_green}==> Installing Github –– Git GUI by Github..${normal}"
 brew cask install --appdir="/Applications" github                   # Git GUI by Github
+
+echo ""
+echo -e "${bold_green}==> Installing MySQL Workbench –– GUI tool for MySQL Databases..${normal}"
 brew cask install --appdir="/Applications" mysqlworkbench           # GUI for MySQL databases
 
+
 # Browswes
-echo "Installing Browsers..."
+echo -e "${bold_yellow}"
+echo "# INTERNET BROWSERS"
+echo "#=======================================#"
+echo -e "${normal}"
+echo "Installing Google Chrome..."
 brew cask install --appdir="/Applications" google-chrome
+echo ""
+echo "Installing Firefox..."
 brew cask install --appdir="/Applications" firefox
 
+
 # VPNs
-echo "Installing VPNs..."
-brew cask install --appdir="/Applications" outline
-brew cask install --appdir="/Applications" outline-manager
-brew cask install --appdir="/Applications" tunnelbear
+echo -e "${bold_yellow}"
+echo "# VPNs"
+echo "#=======================================#"
+echo -e "${normal}"
+echo "Installing Outline VPN..."
+brew cask install --appdir="/Applications" outline                  # Outline VPN
+brew cask install --appdir="/Applications" outline-manager          # Outline VPN Manager
+echo ""
+echo "Installing OpenVPN..."
+brew install openvpn
+
 
 # Social Apps
-echo "Installing Social Apps..."
+echo -e "${bold_yellow}"
+echo "# Messaging/Social Apps"
+echo "#=======================================#"
+echo -e "${normal}"
+echo "Installing Skype.."
 brew cask install --appdir="/Applications" skype
+echo ""
+echo "Installing Slack.."
 brew cask install --appdir="/Applications" slack
 
+
 # Productivity
-echo "Installing Productivity Apps..."
+echo -e "${bold_yellow}"
+echo "# Productivity Apps"
+echo "#=======================================#"
+echo -e "${normal}"
+echo "Installing TickTick –– To-do list app.."
 brew cask install --appdir="/Applications" ticktick
+echo ""
+echo "Installing Toggl –– Time Tracking app.."
 brew cask install --appdir="/Applications" toggldesktop
+echo ""
+echo "Installing Evernote.."
 brew cask install --appdir="/Applications" evernote
+echo ""
+echo "Installing Notion –– Note-taking app.."
 brew cask install --appdir="/Applications" notion
+echo ""
+echo "Installing 1Password –– Password Manager.."
 brew cask install --appdir="/Applications" 1password
+echo ""
+echo "Installing Spectacle –– Window Manager.."
 brew cask install --appdir="/Applications" spectacle
+echo ""
+echo "Installing Bartender –– Menu Bar Manager.."
 brew cask install --appdir="/Applications" bartender
+echo ""
+echo "Installing Caffeine –– Keep Mac Awake.."
 brew cask install --appdir="/Applications" caffeine
+echo ""
+echo "Installing Adobe Acrobat Reader.."
 brew cask install --appdir="/Applications" adobe-acrobat-reader
-brew cask install --appdir="/Applications" smallpdf
+echo ""
+echo "Installing Kindle.."
 brew cask install --appdir="/Applications" kindle
+echo ""
+echo "Installing Sketch –– UI Design App.."
 brew cask install --appdir="/Applications" sketch
 
+
 # Cloud Sync and Back Up
-echo "Installing Cloud Sync and Backup Apps..."
+echo -e "${bold_yellow}"
+echo "# Backup & Sync Apps"
+echo "#=======================================#"
+echo -e "${normal}"
+echo "Installing Dropbox.."
 brew cask install --appdir="/Applications" dropbox
+echo ""
+echo "Installing Google Drive.."
 brew cask install --appdir="/Applications" google-drive
 
+
 # Media Players
-echo "Installing Media Players..."
+echo -e "${bold_yellow}"
+echo "# Media/Video/Audio Apps"
+echo "#=======================================#"
+echo -e "${normal}"
+echo "Installing Boom 3D.."
 brew cask install --appdir="/Applications" boom-3d
+echo ""
+echo "Installing Spotify.."
 brew cask install --appdir="/Applications" spotify
+echo ""
+echo "Installing VLC.."
 brew cask install --appdir="/Applications" vlc
+echo ""
+echo "Installing Plex Media Player –– Home Theatre App.."
 brew cask install --appdir="/Applications" plex-media-player
+echo ""
+echo "Installing Pocket Casts –– Podcast App.."
 brew cask install --appdir="/Applications" pocket-casts
 
 # System Tools
-echo "Installing System Apps..."
+echo "Installing System Apps.."
+echo ""
+echo "Installing The Unarchiver –– Unzip tool.."
 brew cask install --appdir="/Applications" the-unarchiver
 brew cask install --appdir="/Applications" appcleaner
 brew cask install --appdir="/Applications" cleanmymac
