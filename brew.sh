@@ -36,10 +36,10 @@ brew update && brew upgrade
 
 
 
-# Install Bash.
+# Terminals - Bash and iTerm2.
 # *********************************
 echo -e "${bold_yellow}"
-echo "# BASH"
+echo "# TERMINALS –– BASH and iTERM"
 echo "#=======================================#"
 echo -e "${normal}"
 echo -e "${bold_green}==> Installing and configuring Bash..${normal}"
@@ -49,9 +49,13 @@ brew install bash-completion2
 sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 chsh -s /usr/local/bin/bash
 
+echo ""
+echo -e "${bold_green}==> Installing iTerm2..${normal}"
+brew cask install --appdir="/Applications" iterm2 # Full-featured terminal
 
 
-# Install GNU core utilities (those that come with OS X are outdated).
+
+# GNU core utilities (those that come with OS X are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 # *********************************
 echo -e "${bold_yellow}"
@@ -89,16 +93,16 @@ brew install openssh --with-brewed-openssl --with-keychain-support
 
 
 
-# Install Python
+# Install Python & Java
 # *********************************
-echo ""
+echo -e "${bold_yellow}"
+echo "# PROGRAMMING LANGUAGES"
+echo "#=======================================#"
+echo -e "${normal}"
 echo -e "${bold_green}==> Installing Python..${normal}"
 brew install python
 brew install python3
 
-
-# Install Java
-# *********************************
 echo ""
 echo -e "${bold_green}==> Installing Java..${normal}"
 brew cask install --appdir="~/Applications" java
@@ -175,12 +179,6 @@ echo "Installing Docker..."
 brew install docker
 brew install boot2docker
 
-
-# Install iTerm
-# *********************************
-echo ""
-echo -e "${bold_green}==> Installing iTerm2..${normal}"
-brew cask install --appdir="/Applications" iterm2                   # Full-featured terminal
 
 
 # Install IDEs & Code Editors
