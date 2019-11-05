@@ -17,40 +17,31 @@ bold_green="\e[1m\e[32m"
 bold_yellow="\e[1m\e[34m"
 normal="\e[0m"
 
+
+
 # Check for Homebrew, and install if we don't have it
 # *********************************
-echo ""
+echo -e "${bold_yellow}"
+echo "# HOMEBREW"
+echo "#=======================================#"
+echo -e "${normal}"
 echo -e "${bold_green}==> Checking for/installing Homebrew..${normal}"
 if test ! $(which brew); then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-# Make sure we’re using the latest Homebrew.
-# *********************************
 echo ""
 echo -e "${bold_green}==> Updating Homebrew & Homebrew Formulae..${normal}"
 brew update && brew upgrade
 
 
 
-# Install GNU core utilities (those that come with OS X are outdated).
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-# *********************************
-echo ""
-echo -e "${bold_green}==> Installing GNU Core Utilities..${normal}"
-brew install coreutils
-sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
-# Install some other useful utilities like `sponge`.
-brew install moreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-brew install findutils
-# Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed
-
-
 # Install Bash.
 # *********************************
-echo ""
+echo -e "${bold_yellow}"
+echo "# BASH"
+echo "#=======================================#"
+echo -e "${normal}"
 echo -e "${bold_green}==> Installing and configuring Bash..${normal}"
 brew install bash
 brew install bash-completion2
@@ -59,22 +50,43 @@ sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 chsh -s /usr/local/bin/bash
 
 
-# Install more recent versions of some OS X tools.
+
+# Install GNU core utilities (those that come with OS X are outdated).
+# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 # *********************************
+echo -e "${bold_yellow}"
+echo "# CORE TERMINAL BINARIES"
+echo "#=======================================#"
+echo -e "${normal}"
+echo -e "${bold_green}==> Installing GNU Core Utilities..${normal}"
+brew install coreutils
+sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
+
+brew install moreutils  # Install some other useful utilities like `sponge`.
+brew install findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
+brew install gnu-sed    # Install GNU `sed`, overwriting the built-in `sed`.
+
 echo ""
-echo -e "${bold_green}==> Installing wget, vim, grep and screen..${normal}"
+echo -e "${bold_green}==> Installing Wget..${normal}"
 brew install wget
+
+echo ""
+echo -e "${bold_green}==> Installing Vim..${normal}"
 brew install vim
+
+echo ""
+echo -e "${bold_green}==> Installing Grep..${normal}"
 brew install grep
+
+echo ""
+echo -e "${bold_green}==> Installing Screen..${normal}"
 brew install screen
 
-
-# Install openssh
-# *********************************
 echo ""
 echo -e "${bold_green}==> Installing Openssl and Openssh..${normal}"
 brew install openssl
 brew install openssh --with-brewed-openssl --with-keychain-support
+
 
 
 # Install Python
@@ -93,13 +105,14 @@ brew cask install --appdir="~/Applications" java
 brew cask install --appdir="~/Applications" xquartz
 
 
+
 # Install Git
 # *********************************
 echo -e "${bold_yellow}"
 echo "# GIT & Git APPS"
 echo "#=======================================#"
 echo -e "${normal}"
-echo -e "${bold_green}==> Installing git..${normal}"
+echo -e "${bold_green}==> Installing Git..${normal}"
 brew install git
 brew install git-lfs
 brew install git-flow
@@ -112,7 +125,6 @@ brew cask install --appdir="/Applications" github                   # Git GUI by
 echo ""
 echo -e "${bold_green}==> Installing Git Kraken..${normal}"
 brew cask install --appdir="/Applications" gitkraken                # Git GUI
-
 
 
 
@@ -129,6 +141,15 @@ brew tap caskroom/fonts
 brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
+
+echo -e ""
+echo -e "${bold_green}==> Installing Code Fonts..${normal}"
+brew cask install font-consolas-for-powerline
+brew cask install font-fira-code
+brew cask install font-inconsolata
+brew cask install font-roboto-mono
+brew cask install font-source-code-pro
+
 
 
 # Install other useful binaries.
@@ -329,7 +350,18 @@ brew cask install --appdir="/Applications" fliqlo
 brew cask install --appdir="/Applications" garmin-basecamp
 
 # Install developer friendly quick look plugins; see https://github.com/sindresorhus/quick-look-plugins
-brew cask install qlcolorcode qlvideo quicklookapk webpquicklook qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql qlimagesize suspicious-package
+brew cask install qlcolorcode
+brew cask install qlvideo
+brew cask install quicklookapk
+brew cask install webpquicklook
+brew cask install qlstephen
+brew cask install qlmarkdown
+brew cask install quicklook-json
+brew cask install qlprettypatch
+brew cask install quicklook-csv
+brew cask install betterzipql
+brew cask install qlimagesize
+brew cask install suspicious-package
 
 # Remove outdated versions from the cellar.
 echo "Removing outdated versions from homebrew..."
