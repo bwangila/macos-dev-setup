@@ -87,7 +87,7 @@ echo -e "${bold_green}==> Installing Screen..${normal}"
 brew install screen
 
 echo ""
-echo -e "${bold_green}==> Installing Openssl and Openssh..${normal}"
+echo -e "${bold_green}==> Installing OpenSSL and OpenSSH..${normal}"
 brew install openssl
 brew install openssh --with-brewed-openssl --with-keychain-support
 
@@ -177,7 +177,8 @@ echo ""
 echo -e "${bold_green}==> Installing Docker..${normal}"
 echo "Installing Docker..."
 brew install docker
-brew install boot2docker
+brew cask install docker
+brew cask install virtualbox
 
 
 
@@ -200,10 +201,6 @@ echo -e "${bold_green}==> Installing Atom –– Extensible open source Code Edi
 brew cask install --appdir="/Applications" atom                     # Simple, extensible code editor
 
 echo ""
-echo -e "${bold_green}==> Installing Sublime Text 2..${normal}"
-brew cask install --appdir="/Applications" sublime-text             # It's Sublime Text :-)
-
-echo ""
 echo -e "${bold_green}==> Installing MacDown –– Quick Markdown Editor..${normal}"
 brew cask install --appdir="/Applications" macdown                  # Editing Markdown files easily
 
@@ -220,8 +217,20 @@ echo -e "${bold_green}==> Installing DrawIO –– Drawing flowcharts, schemas, 
 brew cask install --appdir="/Applications" drawio                   # Drawing flowcharts, schemas, userflows etc
 
 echo ""
+echo -e "${bold_green}==> Installing ImageOptim –– Image optimization GUI..${normal}"
+brew cask install --appdir="/Applications" imageoptim                   # Drawing flowcharts, schemas, userflows etc
+
+echo ""
 echo -e "${bold_green}==> Installing MySQL Workbench –– GUI tool for MySQL Databases..${normal}"
 brew cask install --appdir="/Applications" mysqlworkbench           # GUI for MySQL databases
+
+echo ""
+echo -e "${bold_green}==> Installing Sequel Pro –– GUI tool for SQL Databases..${normal}"
+brew cask install --appdir="/Applications" mysqlworkbench           # GUI for MySQL databases
+
+echo ""
+echo -e "${bold_green}==> Installing Transmit –– FTP Client..${normal}"
+brew cask install --appdir="/Applications" transmit           # GUI for MySQL databases
 
 
 # Browswes
@@ -326,6 +335,9 @@ echo ""
 echo "Installing VLC.."
 brew cask install --appdir="/Applications" vlc
 echo ""
+echo "Installing Iina.."
+brew cask install --appdir="/Applications" iina
+echo ""
 echo "Installing Plex Media Player –– Home Theatre App.."
 brew cask install --appdir="/Applications" plex-media-player
 echo ""
@@ -347,7 +359,28 @@ brew cask install --appdir="/Applications" daisydisk
 brew cask install --appdir="/Applications" fliqlo
 brew cask install --appdir="/Applications" garmin-basecamp
 
-# Install developer friendly quick look plugins; see https://github.com/sindresorhus/quick-look-plugins
+
+# Installing apps from the App Store
+# See https://github.com/mas-cli/mas
+echo -e "${bold_yellow}"
+echo "# AppStore Apps"
+echo "#=======================================#"
+brew install mas
+mas install 1176895641 #Spark
+mas install 883594849 #Flock
+mas install 1017470484 #Next Meeting
+mas install 409183694 #Keynote
+mas install 409203825 #Numbers
+mas install 409201541 #Pages
+mas install 425264550 #Blackmagic Disk Speedtest
+mas install 568494494 #Pocket
+mas install 865500966 #Feedly
+mas install 405772121 #Littleipsum
+mas install 1225121166 #Master of Typing: Tutor
+
+
+# Install developer friendly quick look plugins;
+# See https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode
 brew cask install qlvideo
 brew cask install quicklookapk
